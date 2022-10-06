@@ -7,7 +7,7 @@ const ipv4Regex = /^(?:(?:\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.){3}(?:\d|[1-9]\d
 
 module.exports = {
 	// turn bytes to data string (1024 => 1KB)
-	formatBytes: function(bytes) {
+	formatBytes: function (bytes) {
 		if (bytes == 0) return '0 Bytes';
 		const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
 			i = Math.floor(Math.log(bytes) / Math.log(1024));
@@ -15,28 +15,27 @@ module.exports = {
 		return parseFloat((bytes / Math.pow(1024, i)).toFixed(2)) + ' ' + sizes[i];
 	},
 	// Get the file type from file extension and then turn to icon
-	getFileIcon: function(file) {
+	getFileIcon: function (file) {
 		// Check folder stuff
 		if (!file.extension && file.children) {
-			return (file.children.filter(item => ['image', 'video'].includes((mimeType.lookup(item.extension) || '').split('/')[0])).length / file.children.length >= 0.60)
-				? '<i class="far fa-images"></i>' : '<i class="far fa-folder"></i>';
+			return (file.children.filter(item => ['image', 'video'].includes((mimeType.lookup(item.extension) || '').split('/')[0])).length / file.children.length >= 0.60) ? '<i class="far fa-images"></i>' : '<i class="far fa-folder"></i>';
 		}
 
 		// Get the icon from file type
 		switch (mimeType.lookup(file.extension).split('/')[0]) {
-		case 'image':
-			return '<i class="far fa-file-image"></i>';
-		case 'video':
-			return '<i class="far fa-file-video"></i>';
-		case 'text':
-			return'<i class="far fa-file-alt"></i>';
-		case 'music':
-			return '<i class="fa-solid fa-file-music"></i>';
-		default:
-			return '<i class="far fa-file">';
+			case 'image':
+				return '<i class="far fa-file-image"></i>';
+			case 'video':
+				return '<i class="far fa-file-video"></i>';
+			case 'text':
+				return '<i class="far fa-file-alt"></i>';
+			case 'music':
+				return '<i class="fa-solid fa-file-music"></i>';
+			default:
+				return '<i class="far fa-file">';
 		}
 	},
-	getIP: function(req) {
+	getIP: function (req) {
 		if (req.headers) {
 			// Standard headers used by Amazon EC2, Heroku, and others.
 			if (ipv4Regex.test(req.headers['x-client-ip'])) return req.headers['x-client-ip'];
@@ -86,7 +85,7 @@ module.exports = {
 
 		return undefined;
 	},
-	createThumbnail: async function(path, name, fileType) {
+	createThumbnail: async function (path, name, fileType) {
 		const options = { width: 200, height: 250, withMetaData: true, fit: 'inside', responseType: 'base64' };
 		try {
 			const thumbpath = decodeURI(process.cwd() + '/src/website/files/userContent/' + name);
@@ -98,7 +97,7 @@ module.exports = {
 					const img = Buffer.from(thumbnail, 'base64');
 
 					// create the folders and file
-					await fs.mkdirSync(path.split('/').slice(0, -1).join('/'), {recursive: true});
+					await fs.mkdirSync(path.split('/').slice(0, -1).join('/'), { recursive: true });
 					await fs.writeFileSync(path, img);
 					break;
 				}
@@ -130,7 +129,7 @@ module.exports = {
 			console.log(err);
 		}
 	},
-	isFresh: function(req, res) {
+	isFresh: function (req, res) {
 		return fresh(req.headers, {
 			'etag': res.getHeader('ETag'),
 			'last-modified': res.getHeader('Last-Modified'),

@@ -17,8 +17,9 @@ a:hover {
 #fileHover:hover {
 	cursor: pointer
 }
+
 .autocomplete-items {
-  background-color: grey;
+	background-color: grey;
 	width: auto;
 	position: absolute;
 	z-index: 1000;
@@ -28,6 +29,7 @@ a:hover {
 	background-color: darkgrey;
 	cursor: pointer;
 }
+
 .container-fluid {
 	overflow-y: visible !important;
 }
@@ -36,7 +38,7 @@ a:hover {
 	display: none;
 }
 
-tr:hover > th > .hide {
+tr:hover>th>.hide {
 	display: block;
 	color: red;
 }
@@ -58,20 +60,23 @@ tr:hover > th > .hide {
 	padding: 4px;
 	width: 197px;
 }
+
 .btn-ctx-menu {
 	width: 100%;
 	text-align: left;
 	background: white;
 }
+
 .btn-ctx-menu:hover {
 	background: #e0e3e7;
 }
-#ctxmenu > p {
+
+#ctxmenu>p {
 	padding: 0 1rem;
 	margin: 0
 }
 
-#ctxmenu > p:hover {
+#ctxmenu>p:hover {
 	background: black;
 	color: ghostwhite
 }
@@ -100,9 +105,11 @@ tr:hover > th > .hide {
 	#wrapper {
 		padding-left: 250px;
 	}
+
 	#wrapper.toggled {
 		padding-left: 0;
 	}
+
 	#sidebar-wrapper {
 		width: 250px;
 	}
@@ -112,6 +119,7 @@ tr:hover > th > .hide {
 	.dropright {
 		display: none;
 	}
+
 	.dot {
 		display: none;
 	}

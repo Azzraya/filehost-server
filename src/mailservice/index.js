@@ -15,10 +15,7 @@ module.exports = async () => {
 	smtpTransport.verify((error) => {
 		if (error) logger.log(error?.message, 'error');
 	});
-
-	app
 	// URL/verify?email=EMAIL_ADDRESS&ID=USER_ID
-		.use(express.json())
-		.use('/', require('./router')(smtpTransport))
-		.listen(mailService.port, () => logger.log(`Mail service online (port: ${mailService.port})`, 'ready'));
+
+	app.use(express.json()).use('/', require('./router')(smtpTransport)).listen(mailService.port, () => logger.log(`Mail service online (port: ${mailService.port})`, 'ready'));
 };

@@ -165,10 +165,11 @@ router.post('/upload', ensureAuthenticated, async (req, res) => {
 		allowEmptyFiles: false,
 		maxFileSize: require('../../config').uploadLimit,
 		maxFieldsSize: require('../../config').uploadLimit,
-		uploadDir: location });
+		uploadDir: location
+	});
 
 	// File has been uploaded (create folders if neccessary)
-	form.on('file', async function(field, file) {
+	form.on('file', async function (field, file) {
 		if (!file.originalFilename) return;
 		const name = file.originalFilename.split('/');
 		name.pop();
@@ -188,13 +189,13 @@ router.post('/upload', ensureAuthenticated, async (req, res) => {
 
 		// Move item to new area
 		await UserSchema.findOneAndUpdate({ _id: req.user._id }, { size: (Number(req.user.size) + file.size).toString() });
-		fs.rename(file.filepath, `${location + req.user._id}/${file.originalFilename}`, function(err) {
+		fs.rename(file.filepath, `${location + req.user._id}/${file.originalFilename}`, function (err) {
 			if (err) throw err;
 		});
 	});
 
 	// log any errors that occur
-	form.on('error', function(err) {
+	form.on('error', function (err) {
 		req.flash('error', err);
 		res.redirect('/files');
 	});
@@ -307,7 +308,7 @@ router.post('/search', ensureAuthenticated, (req, res) => {
 // Rename file/folder
 router.post('/rename', ensureAuthenticated, (req, res) => {
 	const { folder, oldName, newName } = req.body;
-	fs.rename(`${location}${req.user._id}${folder}/${oldName}`, `${location}${req.user._id}${folder}/${newName}${require('path').extname(oldName)}`, function(err) {
+	fs.rename(`${location}${req.user._id}${folder}/${oldName}`, `${location}${req.user._id}${folder}/${newName}${require('path').extname(oldName)}`, function (err) {
 		if (err) return res.json({ error: err.message });
 		req.flash('success', 'File successfully renamed');
 		res.redirect('/files');
@@ -317,7 +318,7 @@ router.post('/rename', ensureAuthenticated, (req, res) => {
 // Move a file/folder somewhere else
 router.post('/move-to', ensureAuthenticated, (req, res) => {
 	const { oldPath, newPath } = req.body;
-	fs.rename(oldPath, newPath, function(err) {
+	fs.rename(oldPath, newPath, function (err) {
 		if (err) return res.json({ error: err.message });
 		res.json({ success: 'File successfully moved' });
 	});
@@ -326,7 +327,7 @@ router.post('/move-to', ensureAuthenticated, (req, res) => {
 // copy a file/folder somewhere else
 router.post('/copy-to', ensureAuthenticated, (req, res) => {
 	const { oldPath, newPath } = req.body;
-	fs.rename(oldPath, newPath, function(err) {
+	fs.rename(oldPath, newPath, function (err) {
 		if (err) return res.json({ error: err.message });
 		res.json({ success: 'File successfully moved' });
 	});

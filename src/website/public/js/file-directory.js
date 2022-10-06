@@ -1,21 +1,21 @@
-$(function() {
+$(function () {
 	$('[data-toggle="tooltip"]').tooltip();
 });
 
-$('tr').bind('mouseover', function() {
+$('tr').bind('mouseover', function () {
 	onHover($(this)[0]);
 
-	$('tr').bind('mouseout', function() {
+	$('tr').bind('mouseout', function () {
 		offHover($(this)[0]);
 	});
 });
 
-$('#fileTypeButton').on('click', function(event) {
+$('#fileTypeButton').on('click', function (event) {
 	console.log('hello');
 	$('#searchDropdown').toggleClass('show');
 });
 
-$('body').on('click', function(e) {
+$('body').on('click', function (e) {
 	// console.log($('#searchDropdown').classList.contains('show'));
 	// console.log($('#searchDropdown').has(e.target).length);
 	// console.log($('.show').has(e.target).length);
@@ -95,7 +95,7 @@ async function shareFile(file) {
 		data: JSON.stringify({ 'path': file }),
 		dataType: 'json',
 		contentType: 'application/json',
-		complete: function(data) {
+		complete: function (data) {
 			const resp = JSON.parse(data.responseText);
 			const URL = window.location.pathname.slice(7)[1] ? window.location.pathname.slice(7) : '';
 			$('#shareURLInput').attr('value', `${window.origin}/share/${document.getElementById('user_id').innerHTML}/${resp.success.id}`);
@@ -114,7 +114,7 @@ function downloadFolder(folder, name) {
 		data: JSON.stringify({ 'path': folder }),
 		dataType: 'json',
 		contentType: 'application/json',
-		complete: function(data) {
+		complete: function (data) {
 			console.log(data);
 			console.log(data.responseJSON.data);
 			const link = document.createElement('a');
@@ -145,8 +145,8 @@ function getPosition(e) {
 		y: posy,
 	};
 }
-$(document).ready(function($) {
-	$('.upload-input').on('change', function() {
+$(document).ready(function ($) {
+	$('.upload-input').on('change', function () {
 		const files = $(this)[0].files;
 		console.log('h');
 		console.log(files);
@@ -168,16 +168,16 @@ $(document).ready(function($) {
 				data: formData,
 				processData: false,
 				contentType: false,
-				success: function(data) {
+				success: function (data) {
 					console.log('upload successful!\n' + data);
 				},
-				xhr: function() {
+				xhr: function () {
 					console.log('boo');
 					// create an XMLHttpRequest
 					const xhr = new XMLHttpRequest();
 					// listen to the 'progress' event
 					console.log(xhr);
-					xhr.upload.addEventListener('progress', function(evt) {
+					xhr.upload.addEventListener('progress', function (evt) {
 						if (evt.lengthComputable) {
 							// calculate the percentage of upload completed
 							let percentComplete = evt.loaded / evt.total;
@@ -228,8 +228,8 @@ $(document).ready(function($) {
 				<button class="btn btn-ctx-menu" onClick="shareFile(\`/${window.location.pathname.slice(7)}/${file.toString()}\`)"><i class="fas fa-share-alt"></i> Share</button>
 				<button class="btn btn-ctx-menu" data-toggle="modal" data-target="#copyURLModel"><i class="fas fa-copy"></i> Copy link</button>
 				${!e.target.parentElement.childNodes[7].outerText.includes('files') ?
-		`<a class="btn btn-ctx-menu" href="${window.origin}/user-content/${user}/${URL}${file.toString()}" download><i class="fas fa-download"></i> Download</a>`
-		: `<button class="btn btn-ctx-menu" onClick="downloadFolder(\`${URL}${file.toString()}\`, \`${file.toString()}\`)"><i class="fas fa-download"></i> Download</button>`}
+						`<a class="btn btn-ctx-menu" href="${window.origin}/user-content/${user}/${URL}${file.toString()}" download><i class="fas fa-download"></i> Download</a>`
+						: `<button class="btn btn-ctx-menu" onClick="downloadFolder(\`${URL}${file.toString()}\`, \`${file.toString()}\`)"><i class="fas fa-download"></i> Download</button>`}
 				<button type="button" class="btn btn-ctx-menu" data-toggle="modal" data-target="#deleteModel">
 			  	<i class="fas fa-trash"></i> Delete
 				</button>
@@ -238,7 +238,7 @@ $(document).ready(function($) {
 				<button class="btn btn-ctx-menu"><i class="fas fa-ellipsis-v"></i> Details</button>`;
 
 				// Show rename file/folder pop-up message
-				$('#renameModel').on('show.bs.modal', function() {
+				$('#renameModel').on('show.bs.modal', function () {
 					$(this).find('.modal-title').html(`Rename: ${file.toString()}`);
 					$(this).find('#renameInput').attr('value', file.toString().split('.')[0]);
 					if (!e.target.parentElement.childNodes[7].outerText.includes('files')) {
@@ -252,14 +252,14 @@ $(document).ready(function($) {
 				});
 
 				// Show copy URL pop-up message
-				$('#copyURLModel').on('show.bs.modal', function() {
+				$('#copyURLModel').on('show.bs.modal', function () {
 					const URL = window.location.pathname.slice(7)[1] ? window.location.pathname.slice(7) : '';
 					$('#copyURLInput').attr('value', `${window.origin}/files/${URL}${file.toString()}`);
 					$('#copyURLBTN').attr('onclick', `copyURL(\`${window.origin}/files/${URL}${file.toString()}\`)`);
 				});
 
 				// Show Copy / Move pop-up message
-				$('#changeModel').on('show.bs.modal', function() {
+				$('#changeModel').on('show.bs.modal', function () {
 					// Reset folder list
 					const node = document.getElementById('folderList');
 					node.innerHTML = '';
@@ -277,7 +277,7 @@ $(document).ready(function($) {
 				});
 
 				// Delete modal confirmation pop-up
-				$('#deleteModel').on('show.bs.modal', function() {
+				$('#deleteModel').on('show.bs.modal', function () {
 					$(this).find('#deleteInput').attr('value', `/${window.location.pathname.slice(7)}/${file.toString()}`);
 					$(this).find('#DeleteTitle').html(`Delete ${file.toString()}?`);
 				});
@@ -339,7 +339,7 @@ function autocomplete(inp, arr) {
 		the text field element and an array of possible autocompleted values:*/
 	let currentFocus;
 	/* execute a function when someone writes in the text field:*/
-	inp.addEventListener('input', function(e) {
+	inp.addEventListener('input', function (e) {
 		let a, b, i, val = this.value;
 		/* close any already open lists of autocompleted values*/
 		closeAllLists();
@@ -366,7 +366,7 @@ function autocomplete(inp, arr) {
 				/* insert a input field that will hold the current array item's value:*/
 				b.innerHTML += '<input type=\'hidden\' value=\'' + arr[i] + '\'>';
 				/* execute a function when someone clicks on the item value (DIV element):*/
-				b.addEventListener('click', function(e) {
+				b.addEventListener('click', function (e) {
 					/* insert the value for the autocomplete text field:*/
 					inp.value = this.getElementsByTagName('input')[0].value;
 					/* close the list of autocompleted values,
@@ -378,25 +378,25 @@ function autocomplete(inp, arr) {
 		}
 	});
 	/* execute a function presses a key on the keyboard:*/
-	inp.addEventListener('keydown', function(e) {
+	inp.addEventListener('keydown', function (e) {
 		let x = document.getElementById(this.id + 'autocomplete-list');
 		if (x) x = x.getElementsByTagName('div');
 		switch (e.keyCode) {
-		case 40:
-			/* If the arrow DOWN key is pressed,
-				increase the currentFocus variable:*/
-			currentFocus++;
-			/* and and make the current item more visible:*/
-			addActive(x);
-			break;
-		case 38:
-		/* If the arrow UP key is pressed,
-			decrease the currentFocus variable:*/
-			currentFocus--;
-			/* and and make the current item more visible:*/
-			addActive(x);
-			break;
-		default:
+			case 40:
+				/* If the arrow DOWN key is pressed,
+					increase the currentFocus variable:*/
+				currentFocus++;
+				/* and and make the current item more visible:*/
+				addActive(x);
+				break;
+			case 38:
+				/* If the arrow UP key is pressed,
+					decrease the currentFocus variable:*/
+				currentFocus--;
+				/* and and make the current item more visible:*/
+				addActive(x);
+				break;
+			default:
 
 		}
 	});
@@ -430,7 +430,7 @@ function autocomplete(inp, arr) {
 		}
 	}
 	/* execute a function when someone clicks in the document:*/
-	document.addEventListener('click', function(e) {
+	document.addEventListener('click', function (e) {
 		closeAllLists(e.target);
 	});
 }

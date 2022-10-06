@@ -14,7 +14,7 @@ const express = require('express'),
 
 // User is trying to login
 router.post('/login', (req, res, next) => {
-	passport.authenticate('local', function(err, user, info) {
+	passport.authenticate('local', function (err, user, info) {
 		// an error occured / unsuccessful log in
 		if (!user) {
 			req.flash('error', info.message);
@@ -23,7 +23,7 @@ router.post('/login', (req, res, next) => {
 		}
 
 		// User logged in
-		req.logIn(user, function(err) {
+		req.logIn(user, function (err) {
 			if (err) return next(err);
 			logger.log(`User logged in: ${user.email ?? user.name}`);
 			return res.redirect('/files');
@@ -72,9 +72,9 @@ router.post('/register', require('../config/RateLimit').createAccountLimiter, as
 
 	// Create new user model
 	const newUser = new UserSchema({
-		name : name,
-		email : email,
-		password : password,
+		name: name,
+		email: email,
+		password: password,
 	});
 
 	// Check if email needs verifing
@@ -125,18 +125,19 @@ router.post('/avatar/upload', (req, res) => {
 		allowEmptyFiles: false,
 		maxFileSize: require('../../config').uploadLimit,
 		maxFieldsSize: require('../../config').uploadLimit,
-		uploadDir: location });
+		uploadDir: location
+	});
 
 	// File has been uploaded (create folders if neccessary)
-	form.on('file', async function(field, file) {
-		fs.rename(file.path, `${process.cwd()}/src/website/files/avatars/${req.user._id}.png`, function(err) {
+	form.on('file', async function (field, file) {
+		fs.rename(file.path, `${process.cwd()}/src/website/files/avatars/${req.user._id}.png`, function (err) {
 			if (err) throw err;
 		});
 		res.redirect('/user/dashboard');
 	});
 
 	// log any errors that occur
-	form.on('error', function(err) {
+	form.on('error', function (err) {
 		res.redirect(`/files?error=${err}`);
 	});
 
@@ -146,7 +147,7 @@ router.post('/avatar/upload', (req, res) => {
 
 // Upload new avatar
 router.post('/avatar/delete', (req, res) => {
-	fs.unlink(`${process.cwd()}/src/website/files/avatars/${req.user._id}.png`, function(err) {
+	fs.unlink(`${process.cwd()}/src/website/files/avatars/${req.user._id}.png`, function (err) {
 		if (err) throw err;
 	});
 	res.redirect('/user/dashboard');

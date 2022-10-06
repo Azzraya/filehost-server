@@ -5,39 +5,46 @@
     </div>
   </a>
   <ul class="list-unstyled components" style="align:center">
-    <li <% if (active == 'index') { %> class="active" <% }%>>
-      <a href="/admin"><i class="fas fa-folder" data-toggle="tooltip" data-placement="right" title="All files"></i><span class="side-text"> Admin</span></a>
+    <li <% if (active=='index' ) { %> class="active" <% }%>>
+        <a href="/admin"><i class="fas fa-folder" data-toggle="tooltip" data-placement="right"
+            title="All files"></i><span class="side-text"> Admin</span></a>
     </li>
-    <li <% if (active == 'users') { %> class="active" <% }%>>
-      <a href="/admin/users"><i class="fas fa-clock" data-toggle="tooltip" data-placement="right" title="Recents"></i><span class="side-text"> Users</span></a>
+    <li <% if (active=='users' ) { %> class="active" <% }%>>
+        <a href="/admin/users"><i class="fas fa-clock" data-toggle="tooltip" data-placement="right"
+            title="Recents"></i><span class="side-text"> Users</span></a>
     </li>
-    <li <% if (active == 'analytics') { %> class="active" <% }%>>
-      <a href="/admin/analytics"><i class="fas fa-clock" data-toggle="tooltip" data-placement="right" title="Recents"></i><span class="side-text"> Analytics</span></a>
+    <li <% if (active=='analytics' ) { %> class="active" <% }%>>
+        <a href="/admin/analytics"><i class="fas fa-clock" data-toggle="tooltip" data-placement="right"
+            title="Recents"></i><span class="side-text"> Analytics</span></a>
     </li>
-    <li <% if (active == 'feedback') { %> class="active" <% }%>>
-      <a href="/admin/feedback"><i class="fas fa-clock" data-toggle="tooltip" data-placement="right" title="Recents"></i><span class="side-text"> Feedback</span></a>
+    <li <% if (active=='feedback' ) { %> class="active" <% }%>>
+        <a href="/admin/feedback"><i class="fas fa-clock" data-toggle="tooltip" data-placement="right"
+            title="Recents"></i><span class="side-text"> Feedback</span></a>
     </li>
   </ul>
 </nav>
 <style>
   a:hover {
-  text-decoration: none;
+    text-decoration: none;
   }
+
   .card-text:hover {
-  background-color: none;
+    background-color: none;
   }
+
   .smallFav {
-  display: none;
+    display: none;
   }
+
   @media (max-width: 1260px) {
-  .smallFav {
-  display: block
-  }
+    .smallFav {
+      display: block
+    }
   }
 </style>
 <script type="text/javascript">
   //icon update
-  $('[data-toggle="collapse"]').on('click', function(){
+  $('[data-toggle="collapse"]').on('click', function () {
     console.log('boo')
     if ($(this).attr('aria-expanded') == 'true') {
       $(new Array($(this).find('i'))[0][1]).addClass('fa-sort-up').removeClass('fa-sort-down');

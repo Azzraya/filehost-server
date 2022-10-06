@@ -82,9 +82,9 @@ router.get('/signup', (req, res) => {
 	if (req.isAuthenticated()) return res.redirect('/files');
 	res.render('navbar/signup', {
 		user: null,
-		error: 	req.flash('error'),
-		name:	req.flash('name'),
-		email:	req.flash('email'),
+		error: req.flash('error'),
+		name: req.flash('name'),
+		email: req.flash('email'),
 	});
 });
 

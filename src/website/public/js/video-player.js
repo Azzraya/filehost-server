@@ -30,11 +30,11 @@ if (videoWorks) {
 }
 
 
-document.getElementById('volume-controls').addEventListener("mouseover", function() {
+document.getElementById('volume-controls').addEventListener("mouseover", function () {
 	document.getElementById('volume').style.display = "block";
 })
 
-document.getElementById('volume-controls').addEventListener("mouseleave", function() {
+document.getElementById('volume-controls').addEventListener("mouseleave", function () {
 	document.getElementById('volume').style.display = "none";
 })
 /* togglePlay toggles the playback state of the video.
@@ -44,7 +44,7 @@ function togglePlay() {
 	// alert('Start: ' + video.buffered.start(0) + ' End: ' + video.buffered.end(0));
 	if (video.paused || video.ended) {
 		video.play();
-		console.log(	document.getElementsByTagName('track')[0].track.activeCues[0])
+		console.log(document.getElementsByTagName('track')[0].track.activeCues[0])
 		document.getElementsByTagName('track')[0].track.activeCues[0].line = 50;
 		//document.getElementsByTagName('track')[0].style['padding-bottom'] = "10%"; //[0].activeCues[0].line = -4;
 	} else {
@@ -238,45 +238,45 @@ each supported shortcut key */
 function keyboardShortcuts(event) {
 	const { key } = event;
 	switch (key) {
-	case 'k':
-	case ' ':
-		togglePlay();
-		animatePlayback();
-		if (video.paused) {
-			showControls();
-		} else {
-			setTimeout(() => {
-				hideControls();
-			}, 2000);
-		}
-		break;
-	case 'm':
-		toggleMute();
-		break;
-	case 'f':
-		toggleFullScreen();
-		break;
-	case 'p':
-		togglePip();
-		break;
-	case 'ArrowRight':
-		if (video.currentTime == video.duration) return;
-		skipAhead(Math.round(Number(seek.value) + 5), true);
-		break;
-	case 'ArrowLeft':
-		if (video.currentTime == 0) return;
-		skipAhead(Math.round(Number(seek.value) - 5), true);
-		break;
-	case 'ArrowUp':
-		if (video.volume == 1) return;
-		video.volume = (video.volume + 0.05).toFixed(3);
-		volume.value = (Number(volume.value) + 0.05).toFixed(3);
-		break;
-	case 'ArrowDown':
-		if (video.volume == 0) return;
-		video.volume = (video.volume - 0.05).toFixed(3);
-		volume.value = (Number(volume.value) - 0.05).toFixed(3);
-		break;
+		case 'k':
+		case ' ':
+			togglePlay();
+			animatePlayback();
+			if (video.paused) {
+				showControls();
+			} else {
+				setTimeout(() => {
+					hideControls();
+				}, 2000);
+			}
+			break;
+		case 'm':
+			toggleMute();
+			break;
+		case 'f':
+			toggleFullScreen();
+			break;
+		case 'p':
+			togglePip();
+			break;
+		case 'ArrowRight':
+			if (video.currentTime == video.duration) return;
+			skipAhead(Math.round(Number(seek.value) + 5), true);
+			break;
+		case 'ArrowLeft':
+			if (video.currentTime == 0) return;
+			skipAhead(Math.round(Number(seek.value) - 5), true);
+			break;
+		case 'ArrowUp':
+			if (video.volume == 1) return;
+			video.volume = (video.volume + 0.05).toFixed(3);
+			volume.value = (Number(volume.value) + 0.05).toFixed(3);
+			break;
+		case 'ArrowDown':
+			if (video.volume == 0) return;
+			video.volume = (video.volume - 0.05).toFixed(3);
+			volume.value = (Number(volume.value) - 0.05).toFixed(3);
+			break;
 	}
 }
 
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('keydown', keyboardShortcuts);
 
 // display TimeRanges
-video.addEventListener('progress', function() {
+video.addEventListener('progress', function () {
 	if (video.buffered.length == 0) return;
 	const bufferedEnd = video.buffered.end((video.buffered.length - 1) < video.buffered.length ? 0 : video.buffered.length - 1);
 	const durationTime = video.duration;

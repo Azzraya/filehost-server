@@ -51,34 +51,34 @@ router.post('/account/:endpoint', apiLimiter, async (req, res) => {
 	const userID = req.body.custID;
 	try {
 		switch (endpoint) {
-		case 'delete':
-			// delete user from database and all their files
-			await UserSchema.findOneAndDelete({ _id: userID });
-			await fs.rmSync(location + userID, { recursive: true });
-			req.flash('success', `Deleted ${userID}'s account`);
-			res.redirect('/admin/users');
-			break;
-		case 'reset':
-			// set password to empty & email user to update password
-			await UserSchema.findOneAndUpdate({ _id: userID }, { password: '' });
-			req.flash('success', `${userID}'s password has been reset.`);
-			res.redirect('/admin/users');
-			break;
-		case 'tier':
-			// set password to empty & email user to update password
-			await UserSchema.findOneAndUpdate({ _id: userID }, { group: req.body.tier });
-			req.flash('success', `Changed ${userID}'s tier to ${req.body.tier}.`);
-			res.redirect('/admin/users');
-			break;
-		case 'email': {
-			// Send verify email to user again
-			const user = await UserSchema.findOne({ _id: userID });
-			await require('axios').get(`${require('../../config').mailService.domain}/verify?email=${user.email}&ID=${userID}`);
-			break;
-		}
-		default:
-			req.flash('error', 'An unexpected error occured');
-			res.redirect('/admin/users');
+			case 'delete':
+				// delete user from database and all their files
+				await UserSchema.findOneAndDelete({ _id: userID });
+				await fs.rmSync(location + userID, { recursive: true });
+				req.flash('success', `Deleted ${userID}'s account`);
+				res.redirect('/admin/users');
+				break;
+			case 'reset':
+				// set password to empty & email user to update password
+				await UserSchema.findOneAndUpdate({ _id: userID }, { password: '' });
+				req.flash('success', `${userID}'s password has been reset.`);
+				res.redirect('/admin/users');
+				break;
+			case 'tier':
+				// set password to empty & email user to update password
+				await UserSchema.findOneAndUpdate({ _id: userID }, { group: req.body.tier });
+				req.flash('success', `Changed ${userID}'s tier to ${req.body.tier}.`);
+				res.redirect('/admin/users');
+				break;
+			case 'email': {
+				// Send verify email to user again
+				const user = await UserSchema.findOne({ _id: userID });
+				await require('axios').get(`${require('../../config').mailService.domain}/verify?email=${user.email}&ID=${userID}`);
+				break;
+			}
+			default:
+				req.flash('error', 'An unexpected error occured');
+				res.redirect('/admin/users');
 		}
 	} catch (err) {
 		console.log(err);

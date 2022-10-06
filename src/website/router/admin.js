@@ -32,7 +32,7 @@ router.get('/', checkDev, async (req, res) => {
 router.get('/users', checkDev, async (req, res) => {
 	let users = await UserSchema.find();
 	const files = require('../../utils/directory')(location),
-		folders =	readdirSync(location, { withFileTypes: true })
+		folders = readdirSync(location, { withFileTypes: true })
 			.filter(dirent => dirent.isDirectory());
 
 	users = users.map(user => Object.assign(user, { size: dirTree(`${location}/${user._id}`)?.size ?? 0 }));
@@ -69,7 +69,7 @@ router.get('/users', checkDev, async (req, res) => {
 
 router.get('/analytics', checkDev, async (req, res) => {
 	const zoneTag = 'fe8a28f0522e4e099dfa33eb76ba904b';
-	const data = { 'query':'{\n  viewer {\n    zones(filter: { zoneTag: ' + zoneTag + ' }) {\n      httpRequests1dGroups(\n        orderBy: [date_ASC]\n        limit: 1000\n        filter: { date_gt: "' + `${new Date(new Date() - 604800000).toISOString().split('T')[0]}` + '" date_lt: "' + `${new Date().toISOString().split('T')[0]}` + '" }\n      ) {\n        date: dimensions {\n          date\n        }\n        sum {\n          cachedBytes\n          bytes\n        }\n      }\n    }\n  }\n}', 'variables':{} };
+	const data = { 'query': '{\n  viewer {\n    zones(filter: { zoneTag: ' + zoneTag + ' }) {\n      httpRequests1dGroups(\n        orderBy: [date_ASC]\n        limit: 1000\n        filter: { date_gt: "' + `${new Date(new Date() - 604800000).toISOString().split('T')[0]}` + '" date_lt: "' + `${new Date().toISOString().split('T')[0]}` + '" }\n      ) {\n        date: dimensions {\n          date\n        }\n        sum {\n          cachedBytes\n          bytes\n        }\n      }\n    }\n  }\n}', 'variables': {} };
 	const response = await post('https://api.cloudflare.com/client/v4/graphql', JSON.stringify(data), {
 		headers: {
 			'X-AUTH-EMAIL': cloudflare.email,

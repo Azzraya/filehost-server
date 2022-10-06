@@ -42,10 +42,10 @@ _Law & order and the public interest._ We may disclose your information to third
 
 Stewardship of your data is critical to us and a responsibility that we embrace. We believe that your data should receive the same legal protections regardless of whether it’s stored on our Services or on your home computer’s hard drive. We’ll abide by the following [Government Request Principles](/transparency) when receiving, scrutinising and responding to government requests (including national security requests) for your data:
 
-*   Be transparent
-*   Fight blanket requests
-*   Protect all users and
-*   Provide trusted services.
+* Be transparent
+* Fight blanket requests
+* Protect all users and
+* Provide trusted services.
 
 We publish a [Transparency Report](/transparency/reports) as part of our commitment to informing you about when and how governments ask us for information. This report details the types and numbers of requests we receive from law enforcement. We encourage you to review our [Government Request Principles](/transparency) and [Transparency Report](/transparency) for more detailed information on our approach and response to government requests.
 
@@ -69,10 +69,10 @@ Dropbox is overseen by the US Federal Trade Commission. JAMS is the US-based ind
 
 You have control over your personal data and how it’s collected, used and shared. For example, you can:
 
-*   _Delete Your Stuff in your Dropbox account_. You can find out more about how to delete files saved on Dropbox [here](https://help.dropbox.com/files-folders/restore-delete/delete-files).
-*   _Change or correct personal data._ You can manage your account and the content contained in it, as well as edit some of your personal data, through your [account settings page](/account).
-*   _Access and take your data elsewhere_. You can access your personal data from your Dropbox account and you can download a copy of Your Stuff in a machine-readable format as outlined [here](https://help.dropbox.com/installs-integrations/sync-uploads/download-entire-folders). You can also ask us for a copy of personal data you provided to us or that we’ve collected, the business or commercial purpose for collecting it, the types of sources we got it from, and types of third parties we’ve shared it with.
-*   _Object to the processing of your personal data_. Depending on the processing activity, you can request that we stop or limit processing of your personal data.
+* _Delete Your Stuff in your Dropbox account_. You can find out more about how to delete files saved on Dropbox [here](https://help.dropbox.com/files-folders/restore-delete/delete-files).
+* _Change or correct personal data._ You can manage your account and the content contained in it, as well as edit some of your personal data, through your [account settings page](/account).
+* _Access and take your data elsewhere_. You can access your personal data from your Dropbox account and you can download a copy of Your Stuff in a machine-readable format as outlined [here](https://help.dropbox.com/installs-integrations/sync-uploads/download-entire-folders). You can also ask us for a copy of personal data you provided to us or that we’ve collected, the business or commercial purpose for collecting it, the types of sources we got it from, and types of third parties we’ve shared it with.
+* _Object to the processing of your personal data_. Depending on the processing activity, you can request that we stop or limit processing of your personal data.
 
 If you would like to submit a data access request, ask for your personal data to be deleted or object to the processing of your personal data, please email us at [privacy@dropbox.com](mailto:privacy@dropbox.com). For more information on how to control and access your personal data, please see our [FAQ](https://help.dropbox.com/accounts-billing/security/privacy-policy-faq).
 

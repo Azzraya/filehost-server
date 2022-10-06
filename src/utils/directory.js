@@ -9,7 +9,7 @@ function safeReadDirSync(path) {
 	let dirData = {};
 	try {
 		dirData = fs.readdirSync(path);
-	} catch(ex) {
+	} catch (ex) {
 		if (['EACCES', 'EPERM'].includes(ex.code)) {
 			// User does not have permissions, ignore directory
 			return null;

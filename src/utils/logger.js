@@ -2,33 +2,33 @@
 const chalk = require('chalk'),
 	onFinished = require('on-finished'),
 	{ getIP } = require('./functions'),
-moment = require('moment');
+	moment = require('moment');
 
 // Logger
 exports.log = (content, type = 'log') => {
 	if (content == 'error') return;
 	const timestamp = `[${moment().format('HH:mm:ss:SSS')}]:`;
 	switch (type) {
-	case 'log':
-		console.log(`${timestamp} ${chalk.bgBlue(type.toUpperCase())} ${content} `);
-		break;
-	case 'warn':
-		console.log(`${timestamp} ${chalk.black.bgYellow(type.toUpperCase())} ${content} `);
-		break;
-	case 'error':
-		console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())} ${content} `);
-		break;
-	case 'debug':
-		console.log(`${timestamp} ${chalk.green(type.toUpperCase())} ${content} `);
-		break;
-	case 'cmd':
-		console.log(`${timestamp} ${chalk.black.bgWhite(type.toUpperCase())} ${content}`);
-		break;
-	case 'ready':
-		console.log(`${timestamp} ${chalk.black.bgGreen(type.toUpperCase())} ${content}`);
-		break;
-	default:
-		break;
+		case 'log':
+			console.log(`${timestamp} ${chalk.bgBlue(type.toUpperCase())} ${content} `);
+			break;
+		case 'warn':
+			console.log(`${timestamp} ${chalk.black.bgYellow(type.toUpperCase())} ${content} `);
+			break;
+		case 'error':
+			console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())} ${content} `);
+			break;
+		case 'debug':
+			console.log(`${timestamp} ${chalk.green(type.toUpperCase())} ${content} `);
+			break;
+		case 'cmd':
+			console.log(`${timestamp} ${chalk.black.bgWhite(type.toUpperCase())} ${content}`);
+			break;
+		case 'ready':
+			console.log(`${timestamp} ${chalk.black.bgGreen(type.toUpperCase())} ${content}`);
+			break;
+		default:
+			break;
 	}
 };
 
@@ -40,13 +40,13 @@ exports.connection = async (req, res) => {
 	res._startTime = new Date().getTime();
 	res._endTime = undefined;
 
-	onFinished(req, function() {
+	onFinished(req, function () {
 		req._endTime = new Date().getTime();
-		onFinished(res, function() {
+		onFinished(res, function () {
 			res._endTime = new Date().getTime();
 
 			// Get additional information
-			const	method = req.method,
+			const method = req.method,
 				url = req.originalUrl || req.url,
 				status = res.statusCode,
 				color = status >= 500 ? 'bgRed' : status >= 400 ? 'bgMagenta' : status >= 300 ? 'bgCyan' : status >= 200 ? 'bgGreen' : 'dim',

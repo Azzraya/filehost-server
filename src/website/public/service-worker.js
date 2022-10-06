@@ -19,17 +19,17 @@ const toCache = [
 	'/img/hero-bg.jpg',
 ];
 importScripts('https://arc.io/arc-sw-core.js');
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
 	event.waitUntil(
 		caches.open(CACHE_NAME)
-			.then(function(cache) {
+			.then(function (cache) {
 				return cache.addAll(toCache);
 			})
 			.then(self.skipWaiting()),
 	);
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function (event) {
 	event.respondWith(
 		fetch(event.request)
 			.catch(() => {
@@ -41,7 +41,7 @@ self.addEventListener('fetch', function(event) {
 	);
 });
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', function (event) {
 	event.waitUntil(
 		caches.keys()
 			.then((keyList) => {

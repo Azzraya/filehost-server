@@ -30,7 +30,7 @@ class ReferralLinks {
 		this.initialise = true;
 		console.log('boo');
 		// At the end of every day reset it and add to week counter
-		cron.schedule('59 23 * * *', async function() {
+		cron.schedule('59 23 * * *', async function () {
 			logger.log('Resetting daily counter and updating weekly counter');
 			const stats = await StatSchema.find();
 			for (const item of stats) {
@@ -41,7 +41,7 @@ class ReferralLinks {
 		});
 
 		// At the end of every week reset it and add to month counter
-		cron.schedule('* * * * 7', async function() {
+		cron.schedule('* * * * 7', async function () {
 			logger.log('Resetting weekly counter and updating monthly counter');
 			const stats = await StatSchema.find();
 			for (const item of stats) {
@@ -52,7 +52,7 @@ class ReferralLinks {
 		});
 
 		// At the end of every month reset it and add to year counter
-		cron.schedule('* * 31 * *', async function() {
+		cron.schedule('* * 31 * *', async function () {
 			logger.log('Resetting monthly counter and updating yearly counter');
 			const stats = await StatSchema.find();
 			for (const item of stats) {

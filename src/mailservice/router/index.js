@@ -12,14 +12,14 @@ module.exports = (smtpTransport) => {
 			if (user?.verified) return res.end('User is already verified');
 
 			// get html to send to user
-			const verifyHTML = fs.readFileSync('./src/mailservice/assets/link.html', 'utf8')
-				.replace(/\{\{LINK\}\}/g, `${mailService.domain}/verifed?ID=${req.query.ID}`);
+			const verifyHTML = fs.readFileSync('./src/mailservice/assets/link.html', 'utf8').replace(/\{\{LINK\}\}/g, `${mailService.domain}/verifed?ID=${req.query.ID}`);
 
 			const mailOptions = {
 				to: req.query.email,
 				subject: 'Please confirm your Email address',
 				html: `${verifyHTML}`,
 			};
+
 			try {
 				const resp = await smtpTransport.sendMail(mailOptions);
 				console.log(resp);
@@ -51,8 +51,7 @@ module.exports = (smtpTransport) => {
 
 	router.post('/feedback', async ({ body: { data } }, res) => {
 		// get html to send to user
-		const verifyHTML = fs.readFileSync('./src/mailservice/assets/feedback.html', 'utf8')
-			.replace(/\{\{NAME\}\}/g, data.name);
+		const verifyHTML = fs.readFileSync('./src/mailservice/assets/feedback.html', 'utf8').replace(/\{\{NAME\}\}/g, data.name);
 
 		try {
 			// update database
@@ -77,4 +76,4 @@ module.exports = (smtpTransport) => {
 	});
 
 	return router;
-};
+}
